@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Defi Technologies — We build software for tech startups</title>
+  <meta name="description" content="Defi Technologies builds software for tech startups. Fintech, LMS, and HR platforms that scale to millions of users.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1a1a1a;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ======================================
+       SECTION 1: HERO — Purple-Blue Gradient
+       ====================================== */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 25%, #4338CA 50%, #1e3a8a 100%);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .hero-nav {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 32px 48px;
+      z-index: 10;
+    }
+
+    .hero-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1.4;
+    }
+
+    .hero-nav-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    .hero-nav-link:hover { color: #fff; }
+
+    /* 3D wireframe mesh canvas */
+    #meshCanvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      padding: 0 48px;
+      text-align: center;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: 10%;
+    }
+
+    .hero-headline {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(36px, 5vw, 56px);
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 40px;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #3730A3;
+      background: #fff;
+      padding: 16px 40px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .hero-btn:hover {
+      background: rgba(255,255,255,0.9);
+      transform: translateY(-1px);
+    }
+
+    /* ======================================
+       SECTION 2: ABOUT — White, Photo + Text
+       ====================================== */
+    .about {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: #fff;
+      padding: 80px 0;
+    }
+
+    .about-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 60px;
+      align-items: center;
+      padding: 0 48px;
+    }
+
+    .about-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+
+    .about-heading {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: clamp(28px, 3vw, 38px);
+      line-height: 1.25;
+      margin-bottom: 28px;
+      color: #1a1a1a;
+    }
+
+    .about-text {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    /* ======================================
+       SECTION 3: EXPERTISE — Text + Image
+       ====================================== */
+    .expertise {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: #fff;
+      padding: 80px 0;
+    }
+
+    .expertise-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      padding: 0 48px;
+    }
+
+    .expertise-left {
+      padding-right: 40px;
+      border-right: 1px solid #e5e5e5;
+    }
+
+    .expertise-heading {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: clamp(28px, 3vw, 38px);
+      margin-bottom: 32px;
+      color: #1a1a1a;
+    }
+
+    .expertise-list {
+      list-style: disc;
+      padding-left: 20px;
+    }
+
+    .expertise-list li {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.75;
+      margin-bottom: 8px;
+    }
+
+    .expertise-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+
+    /* ======================================
+       SECTION 4: SERVICES — Quote + Image
+       ====================================== */
+    .services {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: #fff;
+      padding: 80px 0;
+    }
+
+    .services-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      padding: 0 48px;
+    }
+
+    .services-quote {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-style: italic;
+      font-size: clamp(22px, 2.5vw, 32px);
+      line-height: 1.4;
+      color: #1a1a1a;
+    }
+
+    .services-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+
+    /* ======================================
+       SECTION 5: CONTACT — Gradient
+       ====================================== */
+    .contact {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 25%, #4338CA 50%, #1e3a8a 100%);
+      padding: 80px 48px;
+      text-align: center;
+    }
+
+    .contact-heading {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(36px, 4vw, 52px);
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .contact-sub {
+      font-size: 15px;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 36px;
+    }
+
+    .contact-btn {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #3730A3;
+      background: #fff;
+      padding: 16px 40px;
+      text-decoration: none;
+      margin-bottom: 80px;
+      transition: all 0.3s ease;
+    }
+    .contact-btn:hover {
+      background: rgba(255,255,255,0.9);
+      transform: translateY(-1px);
+    }
+
+    .contact-details {
+      display: flex;
+      gap: 120px;
+      margin-top: auto;
+    }
+
+    .contact-item-label {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .contact-item-value {
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+    }
+    .contact-item-value a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+    }
+    .contact-item-value a:hover { color: #fff; }
+
+    /* ======================================
+       SECTION 6: OFFICE — White
+       ====================================== */
+    .office {
+      width: 100%;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      padding: 80px 48px;
+      text-align: center;
+    }
+
+    .office-heading {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(36px, 4vw, 52px);
+      color: #1a0dab;
+      margin-bottom: 36px;
+    }
+
+    .office-img {
+      width: 280px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    .office-country {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: #1a0dab;
+      margin-bottom: 28px;
+    }
+
+    .office-address {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* ======================================
+       RESPONSIVE
+       ====================================== */
+    @media (max-width: 768px) {
+      .hero-nav { padding: 24px 24px; }
+      .hero-content { margin-right: auto; padding: 0 24px; text-align: center; }
+      .about-inner,
+      .expertise-inner,
+      .services-inner {
+        grid-template-columns: 1fr;
+        padding: 0 24px;
+        gap: 32px;
+      }
+      .expertise-left { border-right: none; padding-right: 0; border-bottom: 1px solid #e5e5e5; padding-bottom: 32px; }
+      .contact { padding: 60px 24px; }
+      .contact-details { flex-direction: column; gap: 32px; }
+      .office { padding: 60px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <canvas id="meshCanvas"></canvas>
+    <nav class="hero-nav">
+      <div class="hero-logo">Defi<br>Technologies</div>
+      <a href="https://forms.gle/i3xaYvVwHd3XxChLA" class="hero-nav-link">Contact us</a>
+    </nav>
+    <div class="hero-content">
+      <h1 class="hero-headline">We build software for tech startups</h1>
+      <a href="https://forms.gle/i3xaYvVwHd3XxChLA" class="hero-btn">Contact Us</a>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about">
+    <div class="about-inner">
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=450&fit=crop" alt="Team working with data dashboards" class="about-img" loading="lazy">
+      <div>
+        <h2 class="about-heading">We are a team of product managers and engineers</h2>
+        <p class="about-text">We've spent six years building tech platforms for finance and education companies.</p>
+        <p class="about-text">We have worked with small and large businesses including customer facing platforms that have scaled to 1 million+ users.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERTISE ===== -->
+  <section class="expertise">
+    <div class="expertise-inner">
+      <div class="expertise-left">
+        <h2 class="expertise-heading">Expertise</h2>
+        <ul class="expertise-list">
+          <li>Fintech web platforms and mobile apps</li>
+          <li>Learning management solutions web and mobile apps</li>
+          <li>HR systems web and mobile apps</li>
+        </ul>
+      </div>
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=450&fit=crop" alt="Technology network" class="expertise-img" loading="lazy">
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="services">
+    <div class="services-inner">
+      <p class="services-quote">We can help get your product to market - enabling you to focus on acquiring clients while we manage the technology.</p>
+      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=450&fit=crop" alt="Data analytics on laptop" class="services-img" loading="lazy">
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact">
+    <h2 class="contact-heading">Talk To Us</h2>
+    <p class="contact-sub">Feel free to call, or email us.</p>
+    <a href="https://forms.gle/i3xaYvVwHd3XxChLA" class="contact-btn">Contact Us</a>
+    <div class="contact-details">
+      <div>
+        <div class="contact-item-label">Phone</div>
+        <div class="contact-item-value"><a href="tel:+6591214205">+65 91214205</a></div>
+      </div>
+      <div>
+        <div class="contact-item-label">Email</div>
+        <div class="contact-item-value"><a href="mailto:hello@defitech.sg">hello@defitech.sg</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== OFFICE ===== -->
+  <section class="office">
+    <h2 class="office-heading">Our Office</h2>
+    <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=400&h=260&fit=crop" alt="Singapore skyline" class="office-img" loading="lazy">
+    <div class="office-country">Singapore</div>
+    <div class="office-address">
+      Defi Technologies Pte Ltd<br>
+      80 Raffles Place<br>
+      #32-01 UOB Plaza,<br>
+      Singapore 048624
+    </div>
+  </section>
+
+  <!-- ===== 3D WIREFRAME MESH SCRIPT ===== -->
+  <script>
+    (function() {
+      const canvas = document.getElementById('meshCanvas');
+      const ctx = canvas.getContext('2d');
+      let w, h, points = [], mouse = { x: 0, y: 0 };
+      const COLS = 50, ROWS = 30;
+
+      function resize() {
+        w = canvas.width = canvas.offsetWidth;
+        h = canvas.height = canvas.offsetHeight;
+        initPoints();
+      }
+
+      function initPoints() {
+        points = [];
+        const spacingX = w * 0.45 / COLS;
+        const spacingY = h * 0.7 / ROWS;
+        const offsetX = w * 0.02;
+        const offsetY = h * 0.15;
+        for (let r = 0; r < ROWS; r++) {
+          for (let c = 0; c < COLS; c++) {
+            points.push({
+              x: offsetX + c * spacingX,
+              y: offsetY + r * spacingY,
+              baseX: offsetX + c * spacingX,
+              baseY: offsetY + r * spacingY,
+              col: c, row: r
+            });
+          }
+        }
+      }
+
+      function animate(t) {
+        ctx.clearRect(0, 0, w, h);
+        const time = t * 0.001;
+
+        // Update points with wave motion
+        for (let i = 0; i < points.length; i++) {
+          const p = points[i];
+          const wave1 = Math.sin(p.col * 0.15 + time * 0.8) * 18;
+          const wave2 = Math.cos(p.row * 0.2 + time * 0.6) * 12;
+          const wave3 = Math.sin((p.col + p.row) * 0.1 + time * 0.5) * 10;
+          p.y = p.baseY + wave1 + wave2 + wave3;
+        }
+
+        // Draw dots
+        for (let i = 0; i < points.length; i++) {
+          const p = points[i];
+          // Fade at edges
+          const nx = (p.x - w * 0.02) / (w * 0.45);
+          const ny = (p.baseY - h * 0.15) / (h * 0.7);
+          const edgeFade = Math.min(1, nx * 3, (1 - nx) * 3) * Math.min(1, ny * 3, (1 - ny) * 3);
+          const alpha = Math.max(0, edgeFade * 0.6);
+
+          if (alpha > 0.02) {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 1.2, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+            ctx.fill();
+          }
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+      requestAnimationFrame(animate);
+    })();
+  </script>
+
+</body>
+</html>
